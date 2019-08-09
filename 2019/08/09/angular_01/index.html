@@ -16,16 +16,17 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content="Wijmo,">
+    <meta name="keywords" content="AngularJS,">
 
 
-    <meta name="description" content="参照官方提供的例子https://demo.grapecity.com.cn/wijmo5/learningwijmo/#KLYKp
-运行效果如下
-代码如下
+    <meta name="description" content="
+在项目中使用到了AngularJS框架，在异步操作在有些特殊情况下会有问题。寻求了同步的方法。
+在项目是实验后，记录一下。
+TypeScript:
 
-  // 点击+号 展开的事件
-  createDetailCell: function (row) {
-    // let fle...">
+  async init() {            
+    await this.getInitInfo();        
+  } ...">
 
 
 <meta name="robots" content="all">
@@ -35,7 +36,7 @@
     <!--Title-->
 
 
-<title>FlexGrid的子Grid的实现方式 | Sai</title>
+<title>AngularJS的同步方法 | Sai</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Sai" type="application/atom+xml">
@@ -124,12 +125,6 @@
     </div>
 </nav>
 
-<a href="http://github.com/eacdy">
-    <img style="position: absolute; top: 0; right: 0; border: 0;"
-        src="/img/forkme.png"
-        alt="Fork me on GitHub">
-</a>
-
     <section class="content-wrap">
         <div class="container">
             <div class="row">
@@ -137,9 +132,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="FlexGrid的子Grid的实现方式">
+        <h1 id="AngularJS的同步方法">
             
-                FlexGrid的子Grid的实现方式
+                AngularJS的同步方法
             
         </h1>
         <div class="post-meta">
@@ -159,8 +154,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/Wijmo" title='Wijmo'>
-                        Wijmo
+                    <a href="/tags/AngularJS" title='AngularJS'>
+                        AngularJS
                     </a>
                 
             
@@ -172,7 +167,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/08</span>
+            <span class="date-meta">2019/08/09</span>
         </span>
         
             <span class="fa-wrap">
@@ -188,49 +183,35 @@
     </div>
     
     <div class="post-body post-content">
-        <p>参照官方提供的例子<br><a href="https://demo.grapecity.com.cn/wijmo5/learningwijmo/#KLYKp" target="_blank" rel="noopener">https://demo.grapecity.com.cn/wijmo5/learningwijmo/#KLYKp</a></p>
-<p>运行效果如下<br><img src="/2019/08/08/wijmo_flexGrid_01/01.png" alt></p>
-<p>代码如下</p>
+        <p><img src="/2019/08/09/angular_01/01.jpg" alt></p>
+<p>在项目中使用到了AngularJS框架，在异步操作在有些特殊情况下会有问题。<br>寻求了同步的方法。</p>
+<p>在项目是实验后，记录一下。</p>
+<p>TypeScript:</p>
 <pre><code>
-  // 点击+号 展开的事件
-  createDetailCell: function (row) {
-    // let flextGridData:Array<any> = this.flexGrid.itemsSource;
-    // (+)ボタンイベント
-    let cell = document.createElement('div');
-    detailGrid = new FlexGrid(cell, {
-      autoGenerateColumns: false,
-      itemsSource: row.dataItem.items,
-      columns: detailHeader
-    });
-    return cell;
-  },
-  // 点击-号 展开的事件
-  disposeDetailCell: function (row) {
-    let cell;
-  }
-  // 行绑定的事件：如果想要某一行包含+号，就在这个方法中设定
-  rowHasDetail: function(row) {
-    return row.dataItem.no === 1;
-  }
+  async init() {            
+    await this.getInitInfo();        
+  }    
 
-// 全展开
-detailAll() {
-    this.dpGrid.showDetail(1);
-    this.dpGrid.showDetail(0);
-}
-// 全闭合
-hidenDetail(){
-    this.dpGrid.hideDetail(0);
-    this.dpGrid.hideDetail(1);
-}
-</any></code></pre>
+  getInitInfo(): Promise<void> {                
+    return new Promise ((fulfill, reject) => {                
+      this.pc_hpService.getSpc0205InitInfo(input_data, WindowIdEnum.PC02, WindowIdEnum.SPC0205)
+          .subscribe(res => {                
+              fulfill();        
+      });                
+      });            
+  }    
+</void></code></pre>
+
+<p>注解：<br>async     做为方法的同步标记 返回 Promise值，不可以有其他返回值<br>await    标记哪个方法进行等待                    </p>
+<p>实现的原理：首先把需要同步的方法加入async，然后异步→同步的方法前加入await，这样，当执行到getInitInfo的时候，方法就会等待返回结果后才进行下一步的操作。<br>然后在getInitInfo方法中调用后台，因为调用后台操作是异步的，但是加入了Promise代码块中的代码就会等待 fulfill()方法的返回确认结果。</p>
+<p>这样就实现了同步操作。</p>
 
     </div>
     
     <div class="post-footer">
         <div class="col-sm-10">
             <div>
-                <b>本文链接</b>：<a href="/2019/08/08/wijmo_flexGrid_01/">FlexGrid的子Grid的实现方式</a>
+                <b>本文链接</b>：<a href="/2019/08/09/angular_01/">AngularJS的同步方法</a>
             </div>
             <div>
                 
@@ -249,10 +230,15 @@ hidenDetail(){
 
 <div class="article-nav prev-next-wrap clearfix">
     
+        <a href="/2019/08/09/wijmo_03/" class="pre-post btn btn-default" title='Wijmo-FlexGrid的全选择和全解除的实现'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Wijmo-FlexGrid的全选择和全解除的实现</span>
+        </a>
     
-        <a href="/2019/08/08/wijmo_01/" class="next-post btn btn-default" title='Hello Wijmo'>
+    
+        <a href="/2019/08/08/wijmo_02/" class="next-post btn btn-default" title='FlexGrid的子Grid的实现方式'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Hello Wijmo</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">FlexGrid的子Grid的实现方式</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -294,7 +280,7 @@ hidenDetail(){
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/技术/"><i class="fa" aria-hidden="true">技术</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/电影/"><i class="fa" aria-hidden="true">电影</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/"><i class="fa" aria-hidden="true">随笔</i></a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/技术/"><i class="fa" aria-hidden="true">技术</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/电影/"><i class="fa" aria-hidden="true">电影</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/"><i class="fa" aria-hidden="true">随笔</i></a><span class="category-list-count">1</span></li></ul>
     </div>
 
 
@@ -304,7 +290,7 @@ hidenDetail(){
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
         
-            <a href="/tags/Wijmo/" style="font-size: 20px;">Wijmo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/人性/" style="font-size: 10px;">人性</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/核辐射/" style="font-size: 10px;">核辐射</a>
+            <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/Wijmo/" style="font-size: 20px;">Wijmo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/核辐射/" style="font-size: 10px;">核辐射</a>
         
     </div>
   </div>

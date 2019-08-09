@@ -16,10 +16,15 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="JAVA,">
 
 
-    <meta name="description" content>
+    <meta name="description" content="在项目中，新人经常会遇到数组排序的使用错误。细心的新人会测试出这个问题。对于解决案，比较简单。
+Array.sort方法                
+
+假如数据是                
+    let arr:Array = [                
+      {na...">
 
 
 <meta name="robots" content="all">
@@ -29,7 +34,7 @@
     <!--Title-->
 
 
-<title>分类: 电影 | Sai</title>
+<title>JAVA 数组排序的注意点 | Sai</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Sai" type="application/atom+xml">
@@ -39,6 +44,8 @@
 
     
 
+
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
 
 
 <link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
@@ -119,45 +126,148 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="JAVA 数组排序的注意点">
+            
+                JAVA 数组排序的注意点
+            
+        </h1>
+        <div class="post-meta">
     
-        电影
     
-</h3>
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/技术">
+            技术
+        </a>
+    </span>
+    
 
-    <article class="post">
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/JAVA" title='JAVA'>
+                        JAVA
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/08/01/movie_qrnbl/">切尔诺贝利</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2019年08月01日
-                    </time>
-                </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/09</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在项目中，新人经常会遇到数组排序的使用错误。<br>细心的新人会测试出这个问题。<br>对于解决案，比较简单。</p>
+<p>Array.sort方法                </p>
+<pre><code>
+假如数据是                
+    let arr:Array<any> = [                
+      {name:'SIGEN000016'},                
+      {name:'S_010102'},                
+      {name:'S_010101'}                
+    ];                
+
+使用                
+arr = itemsR2.sort((n1, n2) => n1.name - n2.name) ;                
+
+排序结果                
+SIGEN000016 -> S_010102 -> S_010101                
+
+
+// 正确的做法    
+arr = arr.sort(                
+  function (n1, n2) {                
+      if (n1.name < n2.name ) {                
+          return -1;                
+       }                
+      if (n1.name > n2.name ) {                
+          return 1;                
+      }
+  }
+  return 0;                
+);                
+
+排序结果                
+SIGEN000016 -> S_010101 -> S_010102                
+
+</any></code></pre>
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/2019/08/09/java_01/">JAVA 数组排序的注意点</a>
             </div>
-            <p class="brief">
+            <div>
                 
-                    HBO2019年，一部五集的短剧，让我从新认识到核武器的强大破坏力以及对未来无线的影响。
-“历史上最严重的核电事故”
-“所释放出的辐射线剂量是广岛原子弹爆炸的400倍以上”
-“损失大概两千亿美元”
-“切尔诺贝利沦为鬼城”
-……
-切尔诺贝利的影响，间接的导致了前苏联的分裂。
-...
+                    转载声明：本博客由齐创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
                 
-            </p>
+            </div>
+            <div>
+                
+            </div>
         </div>
-    </article>
- 
+        <div class="col-sm-2">
+            <img src="" width=100%/>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/09/wijmo_03/" class="next-post btn btn-default" title='Wijmo-FlexGrid的全选择和全解除的实现'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Wijmo-FlexGrid的全选择和全解除的实现</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	<script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: window.location.pathname,
+        owner:"",
+        repo:"https://github.com/itmuch/hexo-itmuch-comment.git",
+        oauth: {
+          client_id:"d7e519da38702d1a89c7",
+          client_secret:"9855c6abfbe45feedfc57168ff50ca7848bb88c4"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+</script>
 
-
+    </div>
 
 
 
