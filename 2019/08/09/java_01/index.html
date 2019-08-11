@@ -45,8 +45,6 @@ Array.sort方法
     
 
 
-    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-
 
 <link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
 <link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
@@ -105,7 +103,7 @@ Array.sort方法
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/categories/随笔"><i class="fa fa-list"></i>随笔</a>
+                                <a href="/categories/随笔"><i class="fa fa-archive"></i>随笔</a>
                             </li>
                         
                             <li role="presentation" class="text-center">
@@ -113,7 +111,7 @@ Array.sort方法
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/categories/电影"><i class="fa fa-list"></i>电影</a>
+                                <a href="/categories/电影"><i class="fa fa-user"></i>电影</a>
                             </li>
                         
                     </ul>
@@ -252,20 +250,20 @@ SIGEN000016 -> S_010101 -> S_010102
 
     <div id="comments">
         
-	<script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-    var gitment = new Gitment({
-        id: window.location.pathname,
-        owner:"",
-        repo:"https://github.com/itmuch/hexo-itmuch-comment.git",
-        oauth: {
-          client_id:"d7e519da38702d1a89c7",
-          client_secret:"9855c6abfbe45feedfc57168ff50ca7848bb88c4"
-        },
-        perPage:"10",
-    });
-    gitment.render('comments');
-</script>
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
 
     </div>
 
@@ -279,6 +277,35 @@ SIGEN000016 -> S_010101 -> S_010102
     <aside class="col-md-4 sidebar">
         
         
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
         
         
 
