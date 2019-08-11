@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019 瓦房店的海边之旅]]></title>
+    <url>%2F2019%2F08%2F11%2Fnote_02%2F</url>
+    <content type="text"><![CDATA[周六7:00顶着晨光出发了，3家人奔着同一个方向行进【沈阳-&gt;瓦房店】。开车还是有点长的，大概4个小时不到，到达目的地。行进257公里，自驾到达目的地。人还行，不是很多，8月基本上最后的赶海的日子了。 赶紧简单吃点，下海。不过，海真的不干净，很多水草和停留的船，海边的人还是很多的。搭起帐篷，带着儿子下海。 对比去年的东戴河（渤海），瓦房店（渤海）的海真的不咋地~没有比较就没有伤害，竟然来了，还是下去玩来吧。 可惜这次赶上来台风“利奇马”，刚刚玩来2个小时开始下雨。哇去。 海边还是有一个期待，就是海鲜大餐。不管海咋样，吃的还不很丰盛的。 打扑克，打游戏，一天结束。 周日早起赶海，是必须的。小土豆们早早4点就起床，可惜有点遗憾，外面下着小雨，这挡不住我们前进的脚步。出发。 收获只能说是一点点。退潮真的太近来。小鱼小虾都哪里去了。 吃过早饭，赶紧回家~ “利奇马”，打不过 我们跑吧。 记录2019年的赶海之旅。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[JAVA 数组排序的注意点]]></title>
     <url>%2F2019%2F08%2F09%2Fjava_01%2F</url>
     <content type="text"><![CDATA[在项目中，新人经常会遇到数组排序的使用错误。细心的新人会测试出这个问题。对于解决案，比较简单。 Array.sort方法 假如数据是 let arr:Array = [ {name:'SIGEN000016'}, {name:'S_010102'}, {name:'S_010101'} ]; 使用 arr = itemsR2.sort((n1, n2) => n1.name - n2.name) ; 排序结果 SIGEN000016 -> S_010102 -> S_010101 // 正确的做法 arr = arr.sort( function (n1, n2) { if (n1.name < n2.name ) { return -1; } if (n1.name > n2.name ) { return 1; } } return 0; ); 排序结果 SIGEN000016 -> S_010101 -> S_010102]]></content>
@@ -91,7 +99,7 @@
   </entry>
   <entry>
     <title><![CDATA[新的开始]]></title>
-    <url>%2F2019%2F07%2F24%2Fmy-first-blog%2F</url>
+    <url>%2F2019%2F07%2F24%2Fnote_01%2F</url>
     <content type="text"><![CDATA[2019.7.24 23:53使用HEXO博客框架，发布于Github开源平台的博客今天开始弄了。给自己定个小目标。一周写3篇首先8月份要总结现在所用的技术，记录下来。AngularJS，Wijmo，Mybaits等。在保守期间，不断完善技术的积累。 坚持~~总会成功。Q]]></content>
       <categories>
         <category>随笔</category>
