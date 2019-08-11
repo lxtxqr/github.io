@@ -16,11 +16,12 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content="Wijmo,">
+    <meta name="keywords" content="鸿蒙,">
 
 
-    <meta name="description" content="首先，在WijimoJS的组件中，FlexGrid是最常用的数据集合组件。FlexGrid中如何绑定一个Checkbox呢，其实很简单加入第一列是一个Checkbox，绑定的数字元素叫No。只需要把这个No元素定义为Boolean类型，就可以自动显示出了CheckBox。
-以下的例子代码是Fl...">
+    <meta name="description" content="本文转载至科技负能量的订阅号鸿蒙一开天地宽,中华有为!
+8月9日，在今日召开的华为全球开发者大会上，华为正式发布全新的、基于微内核的、面向全场景的、分布式操作系统——鸿蒙OS。请注意，这是真正意义上可以和Windows、Android、iOS比肩的操作系统，而不是UI，因此备受关注。
+微内核、...">
 
 
 <meta name="robots" content="all">
@@ -30,7 +31,7 @@
     <!--Title-->
 
 
-<title>Wijmo-FlexGrid的全选择和全解除的实现 | Sai</title>
+<title>终于等到你！鸿蒙系统震撼发布！ | Sai</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Sai" type="application/atom+xml">
@@ -128,9 +129,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Wijmo-FlexGrid的全选择和全解除的实现">
+        <h1 id="终于等到你！鸿蒙系统震撼发布！">
             
-                Wijmo-FlexGrid的全选择和全解除的实现
+                终于等到你！鸿蒙系统震撼发布！
             
         </h1>
         <div class="post-meta">
@@ -138,8 +139,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/技术">
-            技术
+        <a href="/categories/科技">
+            科技
         </a>
     </span>
     
@@ -150,8 +151,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/Wijmo" title='Wijmo'>
-                        Wijmo
+                    <a href="/tags/鸿蒙" title='鸿蒙'>
+                        鸿蒙
                     </a>
                 
             
@@ -163,7 +164,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/09</span>
+            <span class="date-meta">2019/08/11</span>
         </span>
         
             <span class="fa-wrap">
@@ -179,90 +180,61 @@
     </div>
     
     <div class="post-body post-content">
-        <p>首先，在WijimoJS的组件中，FlexGrid是最常用的数据集合组件。<br>FlexGrid中如何绑定一个Checkbox呢，其实很简单<br>加入第一列是一个Checkbox，绑定的数字元素叫No。<br>只需要把这个No元素定义为Boolean类型，就可以自动显示出了CheckBox。</p>
-<p>以下的例子代码是FlexGrid的全选择和接触的解决方法<br>HTML代码</p>
-<pre><code>&lt;wj-flex-grid [headersVisibility]=&quot;&apos;Column&apos;&quot; [itemsSource]=&quot;data&quot;
-  class=&quot;max-ht-315&quot; [allowSorting]=&quot;false&quot; [allowDragging]=&quot;&apos;None&apos;&quot; #flexGrid&gt;
-  &lt;wj-flex-grid-column [header]=&quot;&apos;No.&apos;&quot; [binding]=&quot;&apos;no&apos;&quot; [width]=&quot;130&quot; [dataType]=&quot;2&quot; isReadOnly=&quot;true&quot;&gt;
-&lt;/wj-flex-grid-column&gt;
-&lt;wj-flex-grid-column [header]=&quot;&apos;AAAA&apos;&quot; [binding]=&quot;&apos;no&apos;&quot; [width]=&quot;130&quot; [dataType]=&quot;2&quot; isReadOnly=&quot;true&quot;&gt;
-    &lt;ng-template wjFlexGridCellTemplate [cellType]=&quot;&apos;Cell&apos;&quot; let-item=&quot;item&quot; let-cell=&quot;cell&quot;&gt;
-        &lt;div&gt;BBBB&lt;/div&gt;
-    &lt;/ng-template&gt;
-    &lt;ng-template wjFlexGridCellTemplate [cellType]=&quot;&apos;CellEdit&apos;&quot;&gt;
-    &lt;/ng-template&gt;
- &lt;/wj-flex-grid-column&gt;
-&lt;/wj-flex-grid&gt;
+        <p>本文转载至科技负能量的订阅号<br>鸿蒙一开天地宽,中华有为!</p>
+<p><img src="/2019/08/11/kj_news_01/01.jpg" alt><br>8月9日，在今日召开的华为全球开发者大会上，华为正式发布全新的、基于微内核的、面向全场景的、分布式操作系统——鸿蒙OS。请注意，这是真正意义上可以和Windows、Android、iOS比肩的操作系统，而不是UI，因此备受关注。</p>
+<table><tr><td bgcolor="yellow"><center>微内核、全场景都是什么？又为什么说鸿蒙面向未来？</center></td></tr></table>
+![](/kj_news_01/02.jpg)
 
-&lt;button #select type=&quot;button&quot; class=&quot;gyoumu-button&quot; (click)=&quot;zenSelect()&quot;&gt;全选择&lt;/button&gt;
-&lt;button type=&quot;button&quot; class=&quot;gyoumu-button&quot; (click)=&quot;keijyo()&quot;&gt;全解除&lt;/button&gt;</code></pre><p>TS代码</p>
-<pre><code>
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import { WjFlexGrid } from 'wijmo/wijmo.angular2.grid';
+<p>余承东表示，安卓有超过1亿行代码，内核就超过2000万行，但一般用户用到的代码不到8%，整体比较冗余，在IoT时代这既没必要也不需要。</p>
+<p>而鸿蒙系统采用了“微内核”的设计理念，区别于安卓等系统的“宏内核”。<br><img src="/2019/08/11/kj_news_01/03.jpg" alt></p>
+<p>微内核设计的基本思想是简化内核功能，微内核只提供最基础的服务，比如多进程调度和多进程通信等。</p>
+<p>微内核下，采用同一套内核，却可以针对不同硬件做不同的UI界面，提升效率。举例来说，手机和车载设备不同，用户需求根本不一样，没有必要采相同的系统，但它们可以采用同样的内核，再做不同的界面和功能。</p>
+<p><img src="/2019/08/11/kj_news_01/04.jpg" alt><br>我们回想一下，从前汽车里装的，是又小又不能更新的导航。如今，汽车中控台都变成了一块巨大的平板电脑，可是如何与汽车交互？各村有各村的高招——宝马的iDrive、奥迪的MMI、奔驰的MBUX……</p>
+<p>交互方式五花八门，但是没有一个能做到轻松上手，广泛兼容。因为做操作系统这事儿，压根就不是车企的专长。这个江湖也许早该统一了，这就是鸿蒙的舞台。<br><img src="/2019/08/11/kj_news_01/05.jpg" alt></p>
+<p>同样的，AloT、智能电视、工业4.0，这些在安卓诞生之际，都是不存在的概念，那时候，谁能预见到“系统”的需求会这么大？鸿蒙的微内核意义就在这里，一个到处都在“等系统用”的时代，不管是汽车、电视、厂里的工业控制，一套鸿蒙，轻微加工，就能直接用！<br><img src="/2019/08/11/kj_news_01/06.jpg" alt><br>那么问题来了，支持的设备这么多，鸿蒙到底支不支持手机系统啊？</p>
+<p>支持，当然支持！！！</p>
+<p>谈及鸿蒙OS是否能用在手机上，余承东说“当然能用”，而且随时可用，比安卓更流畅、更安全，更加面向未来。但是考虑到安卓生态，华为会优先使用安卓，而且从安卓应用迁移到鸿蒙生态，非常便捷。</p>
+<table><tr><td bgcolor="yellow"><center>安卓短板全补齐 天然无Root更安全！</center></td></tr></table> 
+安全性方面，余承东表示鸿蒙OS不像安卓，天然无root。安卓root权限一旦被获取，就像掌握了大门的钥匙，整个系统即被攻破。
+![](/kj_news_01/07.jpg)
+而鸿蒙OS微内核天然没有root，这样可以从源头提升系统安全性。微内核每个部分都有把锁，只靠一把钥匙无法获得所有权限，这样一来会更安全。此外，鸿蒙OS内部保留了Linux内核，兼容安卓应用，未来华为希望鸿蒙OS内核能代替所有内核。
 
-@Component({
-  selector: 'app-xxx0201',
-  templateUrl: './xxx0201.component.html',
-  styleUrls: ['./xxx0201.component.css']
-})
+<p>天生流畅<br><img src="/2019/08/11/kj_news_01/08.jpg" alt><br>性能上，鸿蒙系统使用确定时延引擎、高性能IPC两大技术，解决现有系统性能不足的问题。</p>
+<p>怎么理解确定时延引擎？其实很容易理解，这个引擎“知道”任务的优先级，能够进行调度处理——我明明在打着手游，在后台的微信却吃了我不少的运存，这可不行。明摆着游戏的优先级高更高，这个时候，游戏这个应用的资源将优先保障调度，应用响应时延降低25.7%。</p>
+<table><tr><td bgcolor="yellow"><center>鸿蒙今年用在电视上，未来电脑、手表、汽车都能用</center></td></tr></table>
+![](/kj_news_01/09.jpg)
+今年，鸿蒙OS 1.0版将首发搭载在智慧屏也就是电视产品上。
 
-export class xxx0201Component implements OnInit {
-  @ViewChild('flexGrid') flexGrid: WjFlexGrid;
+<p>插播预告：明天，科技富能量将在广州直击荣耀智慧屏的发布实况，体验搭载鸿蒙OS的首款产品，敬请关注！<br><img src="/2019/08/11/kj_news_01/10.jpg" alt><br>明年，鸿蒙OS 2.0将推出，其中内核和应用框架实现完全自研，面向产品包括创新的国产PC、手表、车载设备等。<br><img src="/2019/08/11/kj_news_01/11.jpg" alt><br>2021年，我们会见到鸿蒙OS 3.0，用于音箱、耳机，2022年用于VR眼镜等更多设备。<br><img src="/2019/08/11/kj_news_01/12.jpg" alt><br>会上，余承东表示，鸿蒙OS兼容Unix、Linux、安卓等，可部署在手机上，从安卓迁移到鸿蒙只需1~2天时间。</p>
+<p>在会后的采访中，余承东透露，鸿蒙系统的研发投入了4000-5000人，已经在华为手机上测试完成。鸿蒙OS原计划明年发布，而美国封杀加速了这一自研OS的发布进程。</p>
+<table><tr><td bgcolor="yellow"><center>坚持开源</center></td></tr></table>
+余承东最后介绍，鸿蒙是面向下一代的操作系统，坚持开源，鼓励全球开发者参与开发。考虑到生态和合作伙伴的原因，华为优先支持安卓系统，如果未来安卓不能使用，可以随时迁移到自有的鸿蒙系统，而合作开发者迁移的工作量也会很小。
+![](/kj_news_01/13.jpg)
+余承东在会后接受采访时表示，“我们不是追赶，而是领先。对一个国家来说有领先的下一代 OS，对国家信息产业是好消息。”
+![](/kj_news_01/14.jpg)
+还没看够瘾？转场EMUI 10，也很牛逼！
+![](/kj_news_01/15.jpg)
 
-  data = [
-    {
-      number: '1',
-      select: true
-    },
-    {
-      number: '2',
-      select: false
-    },
-    {
-      number: '3',
-      select: false
-    },
-    {
-      number: '4',
-      select: false
-    }
-  ];
+<table><tr><td bgcolor="yellow"><center>爆改安卓！EMUI 10提升惊人</center></td></tr></table>
+谁说安卓不耐用？EMUI 10用30个月慢不到6%！
 
-  constructor() {
+<p>相比重新再造OS，UI相对更容易，和我们的距离也更近一些。华为消费者业务软件部总裁王成录带来了全新的EMUI 10.0。</p>
+<p>在EMUI此前“18个月不卡顿”的基础上更进一步，实现30个月性能劣化低于6%。就算是老机型，也能升级适配，让更多用户享受到最新科技。王成录预计EMUI10将有1.5亿用户，升级率将达到90%，超过苹果iOS 12。</p>
+<p>全新的UI，当然首先会带来全新的界面。一些常用的图标，华为重新做了设计。另外，提供了最近流行的深色模式，也为夜间使用带来了更好的体验。<br><img src="/2019/08/11/kj_news_01/16.jpg" alt><br>值得一提的是，EMUI把这种深色模式的接口也开放给了第三方APP，如果开发者原因，只需要简单的指令，就能让APP实现深色效果。换句话说只要腾讯的开发者愿意，夜里的微信也可以不再晃眼了。</p>
+<table><tr><td bgcolor="yellow"><center>打破Windows与安卓壁垒：实现双系统同屏操作</center></td></tr></table> 
+核心机制方面，EMUI10已经开始为鸿蒙OS积累经验了。它在底层就采用了类似鸿蒙OS的分布式技术，让开发者一次开发，就可以部署到多个终端。比如电视、手表和手机上的软件，一次软件编写，三个平台统统搞定。大大减少了码农的工作量。
+![](/kj_news_01/17.jpg)
+EMUI10支持多屏协同、跨应用跨系统，提供高效办公体验。而且支持双系统同屏操作、免切换，让PC键盘、鼠标、显示器等，都可以成为手机外设。
 
-  }
+<p>更重要的是，EMUI10支持数据在设备间无缝流转，三方应用支持钉钉、WPS、微信、QQ，原生应用支持图库、文件管理器、邮件、备忘录和录音机等。无论在哪，无论何种设备，只要运行EMUI10，这些软件里呈现的都是相同的用户内容。<br><img src="/2019/08/11/kj_news_01/18.jpg" alt><br>第一款搭载EMUI10正式版的产品已经确定，是华为9月底即将发布的年度旗舰机Mate30，在此之前，9月中旬，EMUI10的内测版，将会开放给华为P30的用户。</p>
+<p>国外网友已经开始了热议，这……怎么好像比咱们还要激动？？<br><img src="/2019/08/11/kj_news_01/19.jpg" alt></p>
 
-  ngOnInit() {
-  }
-  // 全选择
-  zenSelect() {
-    const collectionView = this.flexGrid.collectionView;
-    const  items = collectionView.items;
-
-    for (let i = 0; i < items.length; i++) {
-      items[i].select = true;
-    }
-    this.flexGrid.refresh();
-
-  }
-  // 全解除
-  keijyo() {
-    const collectionView = this.flexGrid.collectionView;
-    const  items = collectionView.items;
-
-    for (let i = 0; i < items.length; i++) {
-      items[i].select = false;
-    }
-    this.flexGrid.refresh();
-  }
-}
-</code></pre>
     </div>
     
     <div class="post-footer">
         <div class="col-sm-10">
             <div>
-                <b>本文链接</b>：<a href="/2019/08/09/wijmo_03/">Wijmo-FlexGrid的全选择和全解除的实现</a>
+                <b>本文链接</b>：<a href="/2019/08/11/kj_news_01/">终于等到你！鸿蒙系统震撼发布！</a>
             </div>
             <div>
                 
@@ -281,15 +253,10 @@ export class xxx0201Component implements OnInit {
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/09/java_01/" class="pre-post btn btn-default" title='JAVA 数组排序的注意点'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">JAVA 数组排序的注意点</span>
-        </a>
     
-    
-        <a href="/2019/08/09/angular_01/" class="next-post btn btn-default" title='AngularJS的同步方法'>
+        <a href="/2019/08/11/note_02/" class="next-post btn btn-default" title='2019 瓦房店的海边之旅'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">AngularJS的同步方法</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">2019 瓦房店的海边之旅</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
