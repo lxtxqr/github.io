@@ -16,10 +16,18 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="Wijmo,">
 
 
-    <meta name="description" content>
+    <meta name="description" content="工作种总结的经验
+1.Grid滚动条的位置指定
+
+this.flexGrid.scrollPosition = new wjcCore.Point(0, this.flexGrid.scrollPosition.y);
+
+
+2.FlexGrid光标位置设定
+
+const cellRange =...">
 
 
 <meta name="robots" content="all">
@@ -29,7 +37,7 @@
     <!--Title-->
 
 
-<title>分类: 科技 | Sai</title>
+<title>Wijmo-FlexGrid使用技巧 | Sai</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Sai" type="application/atom+xml">
@@ -123,39 +131,134 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Wijmo-FlexGrid使用技巧">
+            
+                Wijmo-FlexGrid使用技巧
+            
+        </h1>
+        <div class="post-meta">
     
-        科技
     
-</h3>
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/技术">
+            技术
+        </a>
+    </span>
+    
 
-    <article class="post">
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Wijmo" title='Wijmo'>
+                        Wijmo
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/08/11/kj_news_01/">终于等到你！鸿蒙系统震撼发布！</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2019年08月11日
-                    </time>
-                </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/11</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>工作种总结的经验</p>
+<p>1.Grid滚动条的位置指定</p>
+<pre><code>
+this.flexGrid.scrollPosition = new wjcCore.Point(0, this.flexGrid.scrollPosition.y);
+</code></pre>
+
+<p>2.FlexGrid光标位置设定</p>
+<pre><code>
+const cellRange = new CellRange(2, 2, 2, 2);
+this.flexGrid.selection = cellRange;
+</code></pre>
+
+<p>3.FlexGrid的Header部分的内容局中心显示</p>
+<pre><code>
+cell.innerHTML = '<div style="position:relative;top:50%;transform:translateY(-50%)">XXXX<div>';
+</div></div></code></pre>
+
+<p>4.CSS样式优先匹配</p>
+<pre><code>
+:host ::ng-deep使用。
+Css最优先匹配【:host ::ng-deep】
+</code></pre>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/2019/08/11/wijmo_05/">Wijmo-FlexGrid使用技巧</a>
             </div>
-            <p class="brief">
+            <div>
                 
-                    本文转载至科技负能量的订阅号鸿蒙一开天地宽,中华有为!
-8月9日，在今日召开的华为全球开发者大会上，华为正式发布全新的、基于微内核的、面向全场景的、分布式操作系统——鸿蒙OS。请注意，这是真正意义上可以和Windows、Android、iOS比肩的操作系统，而不是UI，因此...
+                    转载声明：本博客由齐创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
                 
-            </p>
+            </div>
+            <div>
+                
+            </div>
         </div>
-    </article>
- 
+        <div class="col-sm-2">
+            <img src="" width=100%/>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/11/wijmo_04/" class="next-post btn btn-default" title='Wijmo-FlexGrid的列头合并'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Wijmo-FlexGrid的列头合并</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
 
 
+    </div>
 
 
 
@@ -286,8 +389,6 @@ mail：29202445@qq.com
     </div>
 </div>
 
-
-	<script src="/js/search.js?rev=@@hash"></script>
 
 
 
