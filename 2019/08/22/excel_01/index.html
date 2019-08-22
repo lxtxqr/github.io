@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Sai">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="Excel,">
+
+
+    <meta name="description" content="最近在统计数据的时候，使用Excel比较多
+1.现实的案例需求，我需要根据客户指摘的ID匹配出在WBS中匹配出这本是谁做的。
+使用VLOOKUP看下API
+
+VLOOKUP(lookup_value,table_array,col_index_num,range_lookup)
+
+
+以下是使用...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Excel实用技巧-VLOOKUP，SUMIF | Sai</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Sai" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?13766878cde148282622871dd245a973";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Sai</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa fa-home"></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/随笔"><i class="fa fa-user"></i>随笔</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa fa-list"></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/电影"><i class="fa fa-archive"></i>电影</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/科技"><i class="fa fa-archive"></i>科技</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Excel实用技巧-VLOOKUP，SUMIF">
+            
+                Excel实用技巧-VLOOKUP，SUMIF
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/技术">
+            技术
+        </a>
+    </span>
+    
+
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Excel" title='Excel'>
+                        Excel
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/22</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>最近在统计数据的时候，使用Excel比较多</p>
+<p>1.现实的案例<br>需求，我需要根据客户指摘的ID匹配出在WBS中匹配出这本是谁做的。</p>
+<p>使用VLOOKUP<br>看下API</p>
+<pre><code>
+VLOOKUP(lookup_value,table_array,col_index_num,range_lookup)
+</code></pre>
+<p><img src="/2019/08/22/excel_01/01.png" alt></p>
+<p>以下是使用案例<br>SHEET1中作为基础数据存在<br><img src="/2019/08/22/excel_01/02.png" alt></p>
+<p>SHEET2中通过VLookUP函数匹配Sheet1中的数据<br><img src="/2019/08/22/excel_01/03.png" alt></p>
+<p>C3单元格使用的公式</p>
+<pre><code>
+=VLOOKUP($B$3,Sheet1!$B$3:$D$4,2,FALSE)
+</code></pre>
+
+<p>第一个参数为检索的原值，也就是ID，作为Where条件<br>第二个参数为检索范围，指定为Sheet1的B3-&gt;D4这个范围<br>第三个参数为匹配范围的第几列，1开始，2为C列，3为D列。<br>第四个参数为模糊匹配和全部值匹配。</p>
+<p>这里有一个$符号的意义，就在于锁定单元格，如果不去锁定，在COPY的时候，会根据行的左边自动改变的。<br>比如现在的是B3，copy到D行，就变成D3。<br>如果加上$符号后，拷贝后的公式内容不会被改变。</p>
+<p>2.案例<br>在项目中，统计表字段书，做了一个表格，但是需要计算个表的合计数，sum不好用，就像试试sumIF，结果是可以用。</p>
+<p>首先还是看下SUMIF的API<br><img src="/2019/08/22/excel_01/04.png" alt></p>
+<p>接下来还是使用案例：<br><img src="/2019/08/22/excel_01/05.png" alt></p>
+<p>在B8中加入以下公式</p>
+<pre><code>
+=SUMIF($C$7:$F$7,$B$7,C8:F8)
+</code></pre>
+<p>就可以计算出小计中的值。</p>
+<p>第一个参数为Title的范围。<br>第二个参数为统计的名称<br>第三个参数为统计的范围</p>
+<p>注意：就是按照Title中指定名称统计的。计算相同名称列中的值的合计。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/2019/08/22/excel_01/">Excel实用技巧-VLOOKUP，SUMIF</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由齐创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <img src="" width=100%/>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/17/docker_02/" class="next-post btn btn-default" title='Docker 拉取 oracle 11g镜像配置'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Docker 拉取 oracle 11g镜像配置</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">网站公告</h3>
+        <div class="notification">
+            <p>欢迎大家邮件交流 <br/>
+mail：29202445@qq.com
+        </div>
+    </div>
+
+        
+        
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/技术/"><i class="fa" aria-hidden="true">技术</i></a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/电影/"><i class="fa" aria-hidden="true">电影</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/科技/"><i class="fa" aria-hidden="true">科技</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/"><i class="fa" aria-hidden="true">随笔</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        
+            <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Excel/" style="font-size: 10px;">Excel</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/Wijmo/" style="font-size: 20px;">Wijmo</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/核辐射/" style="font-size: 10px;">核辐射</a> <a href="/tags/鸿蒙/" style="font-size: 10px;">鸿蒙</a>
+        
+    </div>
+  </div>
+
+
+        
+        
+
+        
+    </aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-itmuch.git" class="copyright-links" target="_blank" rel="nofollow">ITMuch</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

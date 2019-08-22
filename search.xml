@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Excel实用技巧-VLOOKUP，SUMIF]]></title>
+    <url>%2F2019%2F08%2F22%2Fexcel_01%2F</url>
+    <content type="text"><![CDATA[最近在统计数据的时候，使用Excel比较多 1.现实的案例需求，我需要根据客户指摘的ID匹配出在WBS中匹配出这本是谁做的。 使用VLOOKUP看下API VLOOKUP(lookup_value,table_array,col_index_num,range_lookup) 以下是使用案例SHEET1中作为基础数据存在 SHEET2中通过VLookUP函数匹配Sheet1中的数据 C3单元格使用的公式 =VLOOKUP($B$3,Sheet1!$B$3:$D$4,2,FALSE) 第一个参数为检索的原值，也就是ID，作为Where条件第二个参数为检索范围，指定为Sheet1的B3-&gt;D4这个范围第三个参数为匹配范围的第几列，1开始，2为C列，3为D列。第四个参数为模糊匹配和全部值匹配。 这里有一个$符号的意义，就在于锁定单元格，如果不去锁定，在COPY的时候，会根据行的左边自动改变的。比如现在的是B3，copy到D行，就变成D3。如果加上$符号后，拷贝后的公式内容不会被改变。 2.案例在项目中，统计表字段书，做了一个表格，但是需要计算个表的合计数，sum不好用，就像试试sumIF，结果是可以用。 首先还是看下SUMIF的API 接下来还是使用案例： 在B8中加入以下公式 =SUMIF($C$7:$F$7,$B$7,C8:F8) 就可以计算出小计中的值。 第一个参数为Title的范围。第二个参数为统计的名称第三个参数为统计的范围 注意：就是按照Title中指定名称统计的。计算相同名称列中的值的合计。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker 拉取 oracle 11g镜像配置]]></title>
+    <url>%2F2019%2F08%2F17%2Fdocker_02%2F</url>
+    <content type="text"><![CDATA[本文出处：https://blog.csdn.net/qq_38380025/article/details/80647620 话不多说 开始记录docker拉取阿里的oracle11g 镜像并进行配置， 用pl/sql 可以登录为最终结果 navicat连接是在最后一步这是我们所需要进行拉取oracle镜像的楼主所给出的说明 参考：https://blog.csdn.net/zwx521515/article/details/77982884 但是根据这个进行配置会有一些问题，所以写这篇记录一下，希望可以帮助其他人 开始： ①、开始拉取镜像-执行命令： docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g 下载的过程少长，等待吧，喝杯咖啡，休息一会！（镜像6.8G） 下载完成后 查看镜像： docker images 可以看到已经下载好了 ② 、创建容器 docker run -d -p 1521:1521 –name oracle11g registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g 这里说一下，命令后面的地址一定要是你下载的镜像地址也就是你拉取镜像名字，否则会出现名字已存在等问题！ 如果创建成功能会返回容器id③、启动容器 docker start oracle11g ④、进入镜像进行配置 1、 docker exec -it oracle11g bash 2、进行软连接 sqlplus /nolog 发现没有这个命令，用不了 3、切换到root 用户下 su root 密码：helowin 注意这里还是在容器当中。。有朋友退去了。。。。。。。 4、编辑profile文件配置ORACLE环境变量export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2 export ORACLE_SID=helowin export PATH=$ORACLE_HOME/bin:$PATH 在最后加上 保存并退出 ：wq 5、创建软连接 ln -s $ORACLE_HOME/bin/sqlplus /usr/bin 6、切换到oracle 用户 这里还要说一下，一定要写中间的内条 - 必须要，否则软连接无效 ⑤ 、登录sqlplus并修改sys、system用户密码 sqlplus /nolog conn /as sysdba 接着执行下面命令 alter user system identified by system; alter user sys identified by sys; 也可以创建用户 create user test identified by test; 并给用户赋予权限 grant connect,resource,dba to test; 注意了这里的坑开始出现了 当执行修改密码的时候出现 ： database not open 提示数据库没有打开，不急按如下操作 输入：alter database open; 注意了：这里也许还会提示 ： ORA-01507: database not mounted 不急！继续！ =========== 解决方法=========== 输入：alter database mount; 输入 ：alter database open; 然后就可执行 修改数据库密码的命令了 改完之后输入：ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED; 刷新下表 exit 是退休sql 软连接 ⑥、使用pl/sql 进行连接 第7步是navicat连接的在最后 之前我们把端口映射到了1521上，所以我们需要进行配置 tnsnames.ora 几个朋友不知道ora文件在哪，所以添加了这一步 pl/sql 安装包，汉化包，秘钥工具 https://download.csdn.net/download/qq_38380025/11168289 plsql安装配置工具包 https://blog.csdn.net/qq_38380025/article/details/89677588docker_oracle11 = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.211.135)(PORT =1521)) ) (CONNECT_DATA = (SERVICE_NAME = orcl) )) 打开pl/sql 进行登录 ：提示监听程序当前无法识别连接描述符中请求的服务 这时我们需要去看一下oracle 的 lsnrctl 服务 看到这两个了么，任选其一，修改 tnsnames.ora的 service_name=helowinXDB docker_oracle11 = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.211.135)(PORT =1521)) ) (CONNECT_DATA = (SERVICE_NAME = helowinXDB) )) 欧克，登录成功。 第7步是navicat连接 有几个朋友用的是navicat连的所以故此添加这一步 打开navicat后（navicat12不用配置oci.dll文件了） 直接新建连接]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Wijmo-FlexGrid使用技巧]]></title>
     <url>%2F2019%2F08%2F11%2Fwijmo_05%2F</url>
     <content type="text"><![CDATA[工作种总结的经验 1.Grid滚动条的位置指定 this.flexGrid.scrollPosition = new wjcCore.Point(0, this.flexGrid.scrollPosition.y); 2.FlexGrid光标位置设定 const cellRange = new CellRange(2, 2, 2, 2); this.flexGrid.selection = cellRange; 3.FlexGrid的Header部分的内容局中心显示 cell.innerHTML = 'XXXX'; 4.CSS样式优先匹配 :host ::ng-deep使用。 Css最优先匹配【:host ::ng-deep】]]></content>

@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Sai">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="docker,">
+
+
+    <meta name="description" content="本文出处：https://blog.csdn.net/qq_38380025/article/details/80647620
+话不多说
+开始记录docker拉取阿里的oracle11g 镜像并进行配置，
+用pl/sql 可以登录为最终结果
+navicat连接是在最后一步这是我们所需要进行拉取...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>Docker 拉取 oracle 11g镜像配置 | Sai</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Sai" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?13766878cde148282622871dd245a973";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Sai</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa fa-home"></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/随笔"><i class="fa fa-user"></i>随笔</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa fa-list"></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/电影"><i class="fa fa-archive"></i>电影</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/科技"><i class="fa fa-archive"></i>科技</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Docker 拉取 oracle 11g镜像配置">
+            
+                Docker 拉取 oracle 11g镜像配置
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/技术">
+            技术
+        </a>
+    </span>
+    
+
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/docker" title='docker'>
+                        docker
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/17</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>本文出处：<a href="https://blog.csdn.net/qq_38380025/article/details/80647620" target="_blank" rel="noopener">https://blog.csdn.net/qq_38380025/article/details/80647620</a></p>
+<p>话不多说</p>
+<p>开始记录docker拉取阿里的oracle11g 镜像并进行配置，</p>
+<p>用pl/sql 可以登录为最终结果</p>
+<p>navicat连接是在最后一步<br>这是我们所需要进行拉取oracle镜像的楼主所给出的说明</p>
+<p>参考：<a href="https://blog.csdn.net/zwx521515/article/details/77982884" target="_blank" rel="noopener">https://blog.csdn.net/zwx521515/article/details/77982884</a></p>
+<p>但是根据这个进行配置会有一些问题，所以写这篇记录一下，希望可以帮助其他人</p>
+<p>开始：</p>
+<p> ①、开始拉取镜像-执行命令：<br>         docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g</p>
+<pre><code>下载的过程少长，等待吧，喝杯咖啡，休息一会！（镜像6.8G）
+
+下载完成后 查看镜像： docker images</code></pre><p><img src="/2019/08/17/docker_02/20180611095333277.png" alt></p>
+<p> 可以看到已经下载好了</p>
+<p>② 、创建容器<br>        docker run -d -p 1521:1521 –name oracle11g registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g</p>
+<pre><code>这里说一下，命令后面的地址一定要是你下载的镜像地址也就是你拉取镜像名字，否则会出现名字已存在等问题！
+
+如果创建成功能会返回容器id</code></pre><p>③、启动容器<br>        docker start oracle11g</p>
+<p><img src="/2019/08/17/docker_02/20180611101502699.png" alt></p>
+<p>④、进入镜像进行配置</p>
+<pre><code>1、 docker exec -it oracle11g bash</code></pre><p><img src="/2019/08/17/docker_02/2018061110182486.png" alt></p>
+<p>2、进行软连接</p>
+<pre><code>sqlplus /nolog</code></pre><p><img src="/2019/08/17/docker_02/20180611102045487.png" alt></p>
+<p>发现没有这个命令，用不了</p>
+<pre><code>3、切换到root 用户下
+
+       su root
+
+       密码：helowin</code></pre><p><img src="/2019/08/17/docker_02/20180611102304799.png" alt></p>
+<p>注意这里还是在容器当中。。有朋友退去了。。。。。。。</p>
+<pre><code>4、编辑profile文件配置ORACLE环境变量</code></pre><p>export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2</p>
+<p>export ORACLE_SID=helowin</p>
+<p>export PATH=$ORACLE_HOME/bin:$PATH</p>
+<p><img src="/2019/08/17/docker_02/20180611102552609.png" alt></p>
+<p>在最后加上</p>
+<p><img src="/2019/08/17/docker_02/2018061110262749.png" alt></p>
+<p>保存并退出  ：wq</p>
+<pre><code>5、创建软连接
+
+     ln -s $ORACLE_HOME/bin/sqlplus /usr/bin
+
+ 6、切换到oracle 用户
+
+       这里还要说一下，一定要写中间的内条 -   必须要，否则软连接无效</code></pre><p><img src="/2019/08/17/docker_02/20180611103004656.png" alt></p>
+<p>⑤ 、登录sqlplus并修改sys、system用户密码<br>        sqlplus /nolog</p>
+<pre><code>conn /as sysdba</code></pre><p><img src="/2019/08/17/docker_02/20180611103252382.png" alt></p>
+<p>接着执行下面命令</p>
+<pre><code>    alter user system identified by system;
+
+    alter user sys identified by sys;
+
+    也可以创建用户  create user test identified by test;
+
+      并给用户赋予权限  grant connect,resource,dba to test;
+
+注意了这里的坑开始出现了
+当执行修改密码的时候出现 ：    database not open
+  提示数据库没有打开，不急按如下操作
+
+  输入：alter database open;
+
+注意了：这里也许还会提示  ：   ORA-01507: database not mounted
+
+  不急！继续！</code></pre><p><img src="/2019/08/17/docker_02/20180611104926327.png" alt></p>
+<p>=========== 解决方法===========</p>
+<pre><code>输入：alter database mount;
+
+ 输入 ：alter database open;</code></pre><p><img src="/2019/08/17/docker_02/2018061110503377.png" alt></p>
+<pre><code>然后就可执行 修改数据库密码的命令了
+
+改完之后输入：ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+刷新下表 
+
+  exit  是退休sql 软连接</code></pre><p><img src="/2019/08/17/docker_02/20180611105257965.png" alt></p>
+<p>⑥、使用pl/sql 进行连接 第7步是navicat连接的在最后<br>          之前我们把端口映射到了1521上，所以我们需要进行配置 tnsnames.ora</p>
+<pre><code>几个朋友不知道ora文件在哪，所以添加了这一步   
+
+pl/sql 安装包，汉化包，秘钥工具 https://download.csdn.net/download/qq_38380025/11168289
+
+ plsql安装配置工具包    https://blog.csdn.net/qq_38380025/article/details/89677588</code></pre><p>docker_oracle11 =<br> (DESCRIPTION =<br>   (ADDRESS_LIST =<br>     (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.211.135)(PORT =1521))<br>   )<br>   (CONNECT_DATA =<br>     (SERVICE_NAME = orcl)<br>   )<br>)</p>
+<pre><code>打开pl/sql 进行登录 ：提示监听程序当前无法识别连接描述符中请求的服务</code></pre><p><img src="/2019/08/17/docker_02/20180611110342418.png" alt></p>
+<p><img src="/2019/08/17/docker_02/20180611110350907.png" alt></p>
+<p>这时我们需要去看一下oracle 的 lsnrctl 服务</p>
+<p><img src="/2019/08/17/docker_02/20180611110648642.png" alt></p>
+<p>看到这两个了么，任选其一，修改 tnsnames.ora的 service_name=helowinXDB</p>
+<p>docker_oracle11 =<br> (DESCRIPTION =<br>   (ADDRESS_LIST =<br>     (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.211.135)(PORT =1521))<br>   )<br>   (CONNECT_DATA =<br>     (SERVICE_NAME = helowinXDB)<br>   )<br>)<br>     欧克，登录成功。</p>
+<p><img src="/2019/08/17/docker_02/20180611111057657.png" alt></p>
+<p>第7步是navicat连接<br> 有几个朋友用的是navicat连的所以故此添加这一步</p>
+<p>打开navicat后（navicat12不用配置oci.dll文件了）</p>
+<p>直接新建连接</p>
+<p><img src="/2019/08/17/docker_02/20190617123213199.png" alt></p>
+<p><img src="/2019/08/17/docker_02/20190617122433781.png" alt></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/2019/08/17/docker_02/">Docker 拉取 oracle 11g镜像配置</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由齐创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。如转载至微信公众号，请在文末添加作者公众号二维码。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <img src="" width=100%/>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/22/excel_01/" class="pre-post btn btn-default" title='Excel实用技巧-VLOOKUP，SUMIF'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Excel实用技巧-VLOOKUP，SUMIF</span>
+        </a>
+    
+    
+        <a href="/2019/08/11/wijmo_05/" class="next-post btn btn-default" title='Wijmo-FlexGrid使用技巧'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Wijmo-FlexGrid使用技巧</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">网站公告</h3>
+        <div class="notification">
+            <p>欢迎大家邮件交流 <br/>
+mail：29202445@qq.com
+        </div>
+    </div>
+
+        
+        
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/技术/"><i class="fa" aria-hidden="true">技术</i></a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/电影/"><i class="fa" aria-hidden="true">电影</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/科技/"><i class="fa" aria-hidden="true">科技</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/"><i class="fa" aria-hidden="true">随笔</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        
+            <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Excel/" style="font-size: 10px;">Excel</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/Wijmo/" style="font-size: 20px;">Wijmo</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/核辐射/" style="font-size: 10px;">核辐射</a> <a href="/tags/鸿蒙/" style="font-size: 10px;">鸿蒙</a>
+        
+    </div>
+  </div>
+
+
+        
+        
+
+        
+    </aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-itmuch.git" class="copyright-links" target="_blank" rel="nofollow">ITMuch</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
